@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歌单列表 - 再战强敌</title>
+    <link rel="icon" type="image/png" href="images/title.jpg">
+    <link rel="stylesheet" type="text/css" href="CSS/playlists.css">
+</head>
+
+<body>
+    <main>
+        <section class="playlist-section">
+
+            <div class="playlist-card" id="拉达冈" src="images/Elden_Ring.mp3" title="Elden_Ring">
+                <img src="images/拉达冈.jpg">
+                <h3>黄金律法拉达冈</h3>
+                <p>红发的英雄</p>
+                <p>黄金律法的化身</p>
+            </div>
+            <div class="playlist-card" id="艾尔登" src="images/Elden.mp3" title="Beast Elden">
+                <img src="images/艾尔登.avif">
+                <h3>艾尔登之兽</h3>
+                <p>此为隶属无上意志的兽物，</p>
+                <p>也是律法概念具现化的模样。</p>
+            </div>
+            <div class="playlist-card" id="玛莲妮亚" src="images/Malenia.mp3" title="Malenia,Blade of Miquella">
+                <img src="images/玛莲妮亚.avif">
+                <h3>腐败女神玛莲妮亚</h3>
+                <p>猩红花每绽放一次，玛莲妮亚会腐败一分。
+                    如今那花已绽放两次──</p>
+                <p>  而第三次，她肯定会化为女神。</p>
+            </div>
+        </section>
+        <section id="player">
+            <h2>正在播放</h2>
+            <audio controls id="music">
+                <source src="images/Elden_Ring.mp3" type="audio/mpeg">
+            </audio>
+            <div>
+                <h3 id="songtitle">Elden_Ring</h3>
+            </div>
+            <!-- <button id="switch">切换歌曲</button> -->
+        </section>
+    </main>
+
+    <script src="JS/playlists.js"></script>
+</body>
+
+</html>

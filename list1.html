@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歌单列表 - 再战强敌</title>
+    <link rel="icon" type="image/png" href="images/title.jpg">
+    <link rel="stylesheet" type="text/css" href="CSS/playlists.css">
+    <!-- <link rel="stylesheet" type="text/css" href="CSS/style.css"> -->
+</head>
+
+<body>
+    <main>
+        <section class="playlist-section">
+            <div class="playlist-card" src="images/Fire_Gaint.mp3" title="Fire Gaint">
+                <img src="images/火焰巨人.avif">
+                <h1>火焰巨人</h1>
+                <p>火焰巨人是巨人战争的幸存者──玛莉卡女王得知大锅的火焰恒久不灭，
+                    便施展了烙印诅咒。</p>
+                <p>卑微的巨人啊，化作火焰的永恒看守者，
+                为此而活吧。</p>
+            </div>
+            <div class="playlist-card" src="images/Astel.mp3" title=" Astel, Naturalborn of the Void">
+                <img src="images/黑暗弃子.avif">
+                <h1>黑暗弃子</h1>
+                <p>诞生自遥远彼端、无光黑暗中的星星异形──</p>
+                <p>此为过去毁灭永恒之都，
+                    那夺去居民们的天空，充满恶意的流星。</p>
+            </div>
+            <div class="playlist-card" src="images/Regal_Ancestor_Spirit.mp3" title="Regal Ancestor Spirit">
+                <img src="images/祖灵之王.avif">
+                <h1>祖灵之王</h1>
+                <p>祖灵是存在于黄金树之外的奥秘──</p>
+                <p>从死亡萌发生命，亦从生命萌发生命，
+                    此为祂的生命天性。</p>
+            </div>
+            <div class="playlist-card" src="images/Black_Blade.mp3" title="Black Blade">
+                <img src="images/黑剑.avif">
+                <h1>黑剑玛利喀斯</h1>
+                <p>玛利喀斯是赐给神人的影子野兽──</p>
+                <p>玛莉卡希望她的影子成为命定之死的封印。
+                    然而最后，她却背叛了影子。</p>
+            </div>
+        </section>
+        <section id="player">
+            <h2>正在播放</h2>
+            <audio controls id="music">
+                <source src="images/Elden_Ring.mp3" type="audio/mpeg">
+            </audio>
+            <div>
+                <h3 id="songtitle">Elden_Ring</h3>
+            </div>
+            <!-- <button id="switch">切换歌曲</button> -->
+        </section>
+    </main>
+
+    <script src="JS/playlists.js"></script>
+</body>
+
+</html>

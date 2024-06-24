@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歌单列表 - 再战强敌</title>
+    <link rel="icon" type="image/png" href="images/title.jpg">
+    <link rel="stylesheet" type="text/css" href="CSS/playlists.css">
+    <!-- <link rel="stylesheet" type="text/css" href="CSS/style.css"> -->
+</head>
+
+<body>
+    <main>
+        <section class="playlist-section">
+
+            <div class="playlist-card" id="葛孚雷" src="images/Godfrey.mp3" title="Godfrey,First Elden Lord">
+                <img src="images/葛孚雷.avif">
+                <h3>初始之王葛孚雷</h3>
+                <p>“初始艾尔登之王”葛孚雷
+                    在某个时期被夺走赐福，变成褪色者，
+                    带着有同样境遇的人们离开交界地。</p>
+                <p>在褪色者长征的终点，
+                    他舍弃当王，重回战士的身份。</p>
+            </div>
+            <div class="playlist-card" id="满月" src="images/Rennala.mp3" title="Queen of the Full Moon">
+                <img src="images/满月.avif">
+                <h3>满月女王蕾娜菈</h3>
+                <p>蕾娜菈女王在年幼时期遇见了月亮──</p>
+                <p>那随后成为征服学院的优美月亮。</p>
+            </div>
+            <div class="playlist-card" id="龙王" src="images/Placidusax.mp3" title="Dragonlord Placidusax">
+                <img src="images/龙王.avif">
+                <h3>龙王普拉顿桑克斯</h3>
+                <p>龙王坐镇时空夹缝、风暴中心──
+                    据说它是黄金树时代之前的艾尔登之王。</p>
+                <p>然而神祇已经离去，王依旧等着祂的归来。</p>
+            </div>
+            <div class="playlist-card" id="死龙" scr="images/Fortissax" title="Lichdragon Fortissax">
+                <img src="images/死龙.avif">
+                <h3>死龙弗尔桑克斯</h3>
+                <p>当“黄金”葛德文成为死王子之后，
+                    古龙就待在它的好友体内，不停与死亡搏斗──</p>
+                <p>那是场不会获胜的战争，得到的战果只有侵蚀</p>
+            </div>
+        </section>
+        <section id="player">
+            <h2>正在播放</h2>
+            <audio controls id="music">
+                <source src="images/Elden_Ring.mp3" type="audio/mpeg">
+            </audio>
+            <div>
+                <h3 id="songtitle">Elden_Ring</h3>
+            </div>
+            <!-- <button id="switch">切换歌曲</button> -->
+        </section>
+    </main>
+
+    <script src="JS/playlists.js"></script>
+</body>
+
+</html>
