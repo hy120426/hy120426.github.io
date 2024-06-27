@@ -9,38 +9,38 @@ var playMode=0;
 var addMode=0;
 var netxsong="null";
 songlist=[
-  "images/Astel.mp3",
-  "images/Black_Blade.mp3",
+  // "images/Astel.mp3",
+  // "images/Black_Blade.mp3",
   "images/Elden_Ring.mp3",
-  "images/Elden.mp3",
-  "images/Fire_Gaint.mp3",
-  "images/Fortissax.mp3",
-  "images/Godfrey.mp3",
-  "images/Godrick.mp3",
-  "images/Malenia.mp3",
-  "images/Mohg.mp3",
-  "images/Omen_king.mp3",
-  "images/Placidusax.mp3",
-  "images/Regal_Ancestor_Spirit.mp3",
-  "images/Rennala.mp3",
-  "images/Serpent.mp3",
+  // "images/Elden.mp3",
+  // "images/Fire_Gaint.mp3",
+  // "images/Fortissax.mp3",
+  // "images/Godfrey.mp3",
+  // "images/Godrick.mp3",
+  // "images/Malenia.mp3",
+  // "images/Mohg.mp3",
+  // "images/Omen_king.mp3",
+  // "images/Placidusax.mp3",
+  // "images/Regal_Ancestor_Spirit.mp3",
+  // "images/Rennala.mp3",
+  // "images/Serpent.mp3",
 ]
 titlelist=[
-  "Astel, Naturalborn of the Void",
-  "Black Blade",
+  // "Astel, Naturalborn of the Void",
+  // "Black Blade",
   "Elden Ring",
-  "Beast Elden",
-  "Fire Gaint",
-  "Lichdragon Fortissax",
-  "Godfrey,First Elden Lord",
-  "Godrick the Grafted",
-  "Malenia,Blade of Miquella",
-  "Mohg,Lord of Blood",
-  "Omen king",
-  "Dragonlord Placidusax",
-  "Regal Ancestor Spirit",
-  "Rennala,Queen of the Full Moon",
-  "Rykard, Lord of Blasphemy",
+  // "Beast Elden",
+  // "Fire Gaint",
+  // "Lichdragon Fortissax",
+  // "Godfrey,First Elden Lord",
+  // "Godrick the Grafted",
+  // "Malenia,Blade of Miquella",
+  // "Mohg,Lord of Blood",
+  // "Omen king",
+  // "Dragonlord Placidusax",
+  // "Regal Ancestor Spirit",
+  // "Rennala,Queen of the Full Moon",
+  // "Rykard, Lord of Blasphemy",
 ]
 music.onended=function(){
   if(playMode==0){
@@ -81,9 +81,13 @@ music.addEventListener("timeupdate", function() {
 });
 
 window.addEventListener("load", function() {
-  console.log(localStorage);
-  var storedTime = localStorage.getItem("currentTime");
-  var storedSong = localStorage.getItem("currentsong");
+  console.log(sessionStorage);
+  var storedTime = sessionStorage.getItem("currentTime");
+  var storedSong = sessionStorage.getItem("currentsong");
+  var storedsong = sessionStorage.getItem("songlist");
+  if (storedsong)songlist=JSON.parse(storedsong);
+  var storedtitle = sessionStorage.getItem("titlelist");
+if(storedtitle) titlelist=JSON.parse(storedtitle);
   if (storedSong) {
     music.src = storedSong;
     source.src=storedSong;
@@ -91,11 +95,11 @@ window.addEventListener("load", function() {
   if (storedTime) {
     music.currentTime = parseFloat(storedTime);
   }
-  var storetitle = localStorage.getItem("songtitle");
+  var storetitle = sessionStorage.getItem("songtitle");
   if (storetitle) {
     document.getElementById("songtitle").textContent=storetitle;
   }
-  var storeMode = localStorage.getItem("playMode");
+  var storeMode = sessionStorage.getItem("playMode");
   if(storeMode){
     playMode=parseInt(storeMode);
     if(playMode==0){
@@ -108,7 +112,7 @@ window.addEventListener("load", function() {
       btn.textContent="随机播放";
     }
   }
-  var storeadd = localStorage.getItem("addMode");
+  var storeadd = sessionStorage.getItem("addMode");
   if(storeadd){
     addMode=parseInt(storeadd);
     if(addMode==0){
@@ -118,24 +122,30 @@ window.addEventListener("load", function() {
       add.textContent="下一首播放";
     }
   }
-  var storenext = localStorage.getItem("nextsong");
+  var storenext = sessionStorage.getItem("nextsong");
   if(storenext){
     netxsong=storenext;
   }
 });
 
 window.addEventListener("beforeunload", function() {
-  localStorage.setItem("currentTime", currentTime);
-  localStorage.setItem("currentsong", source.src);
-  localStorage.setItem("songtitle", document.getElementById("songtitle").textContent);
-  localStorage.setItem("playMode",playMode);
-  localStorage.setItem("addMode",addMode);
-  localStorage.setItem("nextsong",netxsong);
+  sessionStorage.setItem("currentTime", currentTime);
+  sessionStorage.setItem("currentsong", source.src);
+  sessionStorage.setItem("songtitle", document.getElementById("songtitle").textContent);
+  sessionStorage.setItem("playMode",playMode);
+  sessionStorage.setItem("addMode",addMode);
+  sessionStorage.setItem("nextsong",netxsong);
+  sessionStorage.setItem("songlist",JSON.stringify(songlist));
+  sessionStorage.setItem("titlelist",JSON.stringify(titlelist));
 });
 
 var allCards = document.querySelectorAll('.playlist-card');
 for(card of allCards){
   card.addEventListener('click', function () {
+    if(titlelist.indexOf(this.getAttribute("title"))==-1){
+      titlelist.push(this.getAttribute("title"));
+      songlist.push(this.getAttribute("src"));
+    } 
     if(addMode==1){
       netxsong=this.getAttribute("title");
       return;}
