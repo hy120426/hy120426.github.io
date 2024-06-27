@@ -1,8 +1,13 @@
 var music = document.getElementById("music");
 var btn=document.getElementById("switch");
+var add=document.getElementById("add");
 var source=document.querySelector("source");
+var up=document.getElementById("up");
+var down=document.getElementById("down");
 var currentTime = 0;
 var playMode=0;
+var addMode=0;
+var netxsong="null";
 songlist=[
   "images/Astel.mp3",
   "images/Black_Blade.mp3",
@@ -42,14 +47,21 @@ music.onended=function(){
   music.play();
 }
 else if(playMode==1){
+  if(netxsong!="null"){
+    index=titlelist.indexOf(netxsong);
+    netxsong="null";
+    music.src=songlist[index];
+  source.src=songlist[index];
+  document.getElementById("songtitle").textContent=titlelist[index];
+  music.play();
+  return;
+  }
   var currentTitle=document.getElementById("songtitle").textContent;
   var index=titlelist.indexOf(currentTitle);
-  console.log(currentTitle);
   if(index==titlelist.length-1){
     index=0;
   }
   else{index=index+1;}
-  console.log(index);
   music.src=songlist[index];
   source.src=songlist[index];
   document.getElementById("songtitle").textContent=titlelist[index];
@@ -96,18 +108,37 @@ window.addEventListener("load", function() {
       btn.textContent="随机播放";
     }
   }
+  var storeadd = localStorage.getItem("addMode");
+  if(storeadd){
+    addMode=parseInt(storeadd);
+    if(addMode==0){
+      add.textContent="直接播放";
+    }
+    else if(addMode==1){
+      add.textContent="下一首播放";
+    }
+  }
+  var storenext = localStorage.getItem("nextsong");
+  if(storenext){
+    netxsong=storenext;
+  }
 });
 
 window.addEventListener("beforeunload", function() {
   localStorage.setItem("currentTime", currentTime);
   localStorage.setItem("currentsong", source.src);
   localStorage.setItem("songtitle", document.getElementById("songtitle").textContent);
-  this.localStorage.setItem("playMode",playMode);
+  localStorage.setItem("playMode",playMode);
+  localStorage.setItem("addMode",addMode);
+  localStorage.setItem("nextsong",netxsong);
 });
 
 var allCards = document.querySelectorAll('.playlist-card');
 for(card of allCards){
   card.addEventListener('click', function () {
+    if(addMode==1){
+      netxsong=this.getAttribute("title");
+      return;}
     if(document.getElementById("songtitle").textContent!=this.getAttribute("title")){
     music.src = this.getAttribute("src");
     source.src=this.getAttribute("src");
@@ -130,3 +161,47 @@ btn.addEventListener("click",function(){
     btn.textContent="单曲循环";
   }
 })
+add.addEventListener("click",function(){
+  if(addMode==0){
+    addMode=1;
+    add.textContent="下一首播放";
+  }
+  else if(addMode==1){
+    addMode=0;
+    add.textContent="直接播放";
+  }
+})
+up.addEventListener("click",function(){
+  var currentTitle=document.getElementById("songtitle").textContent;
+  var index=titlelist.indexOf(currentTitle);
+  if(index==0){
+    index=titlelist.length-1;
+  }
+  else{index=index-1;}
+  music.src=songlist[index];
+  source.src=songlist[index];
+  document.getElementById("songtitle").textContent=titlelist[index];
+  music.play();
+})
+down.addEventListener("click",function(){
+  if(netxsong!="null"){
+    index=titlelist.indexOf(netxsong);
+    netxsong="null";
+    music.src=songlist[index];
+  source.src=songlist[index];
+  document.getElementById("songtitle").textContent=titlelist[index];
+  music.play();
+  return;
+  }
+  var currentTitle=document.getElementById("songtitle").textContent;
+  var index=titlelist.indexOf(currentTitle);
+  if(index==titlelist.length-1){
+    index=0;
+  }
+  else{index=index+1;}
+  music.src=songlist[index];
+  source.src=songlist[index];
+  document.getElementById("songtitle").textContent=titlelist[index];
+  music.play();
+})
+
